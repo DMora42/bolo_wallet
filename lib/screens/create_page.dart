@@ -25,7 +25,15 @@ class _CreatePageState extends State<CreatePage> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Scaffold(
+      backgroundColor: themeData.backgroundColor,
+      appBar: AppBar(
+        title: Text('Create Wallet'),
+        backgroundColor: themeData.backgroundColor,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

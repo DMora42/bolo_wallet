@@ -28,18 +28,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isPrivateKeyStored = false;
+  bool _isMnemonicStored = false;
 
   @override
   void initState() {
     super.initState();
-    _checkPrivateKey();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.top]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Theme.of(context).backgroundColor,
+      statusBarIconBrightness: Theme.of(context).brightness,
+    ));
+    _checkMnemonic();
   }
 
-  Future<void> _checkPrivateKey() async {
-    final privateKey = await SecureStorage().read('privateKey');
+  Future<void> _checkMnemonic() async {
+    final mnemonic = await SecureStorage().read('mnemonic');
     setState(() {
-      _isPrivateKeyStored = privateKey != null;
+      _isMnemonicStored = mnemonic != null;
     });
   }
 
@@ -55,9 +61,11 @@ class _MyAppState extends State<MyApp> {
               transitionDuration: const Duration(milliseconds: 500),
               debugShowCheckedModeBanner: false,
               title: 'Bolo Wallet',
-              initialRoute: _isPrivateKeyStored ? '/parent' : '/',
+              initialRoute: _isMnemonicStored ? '/parent' : '/',
               routes: getRoutes(context),
-              theme: lightModeTheme,
+              theme: themeNotifier.isDark
+                  ? Constants.darkModeTheme
+                  : Constants.lightModeTheme,
             );
           });
         }));

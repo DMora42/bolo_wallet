@@ -1,6 +1,6 @@
 name: bolo_wallet
 description: Multi wallet to Bolo Protocol.
-homepage: https://github.com/SantiiRepair/bolo_wallet
+homepage: https://github.com/SantiiRepair/bolo-wallet
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -56,6 +56,8 @@ dependencies:
   cardano_wallet_sdk: ^0.1.0-alpha.12
   bip32: ^2.0.0
   babstrap_settings_screen: ^0.1.5
+  animated_notch_bottom_bar: ^0.0.6
+  charts_flutter: ^0.12.0
 
 dev_dependencies:
   flutter_test:
@@ -80,9 +82,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/sobGOGlight.png
-    - assets/SobGOGdark.png
+  # assets:
+  # - assets/
+  # - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -31,7 +31,7 @@ class IntroPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text('Create New Wallet'),
+                  child: const Text("Let's Get Started"),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/create');
                   },
@@ -44,7 +44,7 @@ class IntroPage extends StatelessWidget {
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.black,
                 ),
-                child: const Text('Import Wallet'),
+                child: const Text('Got A Wallet'),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/import');
                 },

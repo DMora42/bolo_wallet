@@ -71,9 +71,14 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Scaffold(
+      backgroundColor: themeData.backgroundColor,
       appBar: AppBar(
         title: Text('Import Mnemonic'),
+        backgroundColor: themeData.backgroundColor,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(

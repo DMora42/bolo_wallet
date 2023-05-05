@@ -21,8 +21,8 @@ class _ConfirmMnemonicPageState extends State<ConfirmMnemonicPage> {
     return true;
   }
 
-  Future<void> navigateTo() async {
-    Navigator.of(context).pushNamed('/parent');
+  Future<void> navigateTo(context) async {
+    Navigator.pushNamedAndRemoveUntil(context, '/parent', (route) => false);
   }
 
   @override
@@ -89,7 +89,7 @@ class _ConfirmMnemonicPageState extends State<ConfirmMnemonicPage> {
                   ? () async {
                       final mnemonic = widget.words.join(' ');
                       await SecureStorage().write('mnemonic', mnemonic);
-                      await navigateTo();
+                      await navigateTo(context);
                     }
                   : null,
               child: Text('Confirm'),
