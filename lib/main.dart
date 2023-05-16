@@ -47,15 +47,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
     return ChangeNotifierProvider(
         create: (_) => ModelTheme(),
         child: Consumer<ModelTheme>(
             builder: (context, ModelTheme themeNotifier, child) {
           SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-            // ignore: deprecated_member_use
-            statusBarColor: themeData.backgroundColor,
-            statusBarIconBrightness: themeData.brightness,
+            statusBarColor: themeNotifier.isDark
+                ? const Color(0xff06090d)
+                : const Color(0xfff8f8f8),
+            statusBarIconBrightness:
+                themeNotifier.isDark ? Brightness.dark : Brightness.light,
           ));
           return Sizer(builder: (context, orientation, deviceType) {
             return GetMaterialApp(
