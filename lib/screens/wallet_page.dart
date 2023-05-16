@@ -1,9 +1,7 @@
-import 'package:bolo_wallet/data/crypto_pair_model.dart';
 import 'package:bolo_wallet/data/cryptocurrencies_data.dart';
 import 'package:bolo_wallet/util/api_calls.dart';
 import 'package:bolo_wallet/widgets/actions/actions_widget.dart';
 import 'package:bolo_wallet/widgets/balance_panel/balance_panel.dart';
-import 'package:bolo_wallet/widgets/chart/chart_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';

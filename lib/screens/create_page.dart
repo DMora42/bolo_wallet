@@ -29,7 +29,7 @@ class _CreatePageState extends State<CreatePage> {
     return Scaffold(
       backgroundColor: themeData.backgroundColor,
       appBar: AppBar(
-        title: Text('Create Wallet'),
+        title: const Text('Create Wallet'),
         backgroundColor: themeData.backgroundColor,
         centerTitle: true,
         automaticallyImplyLeading: false,

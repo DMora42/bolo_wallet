@@ -17,18 +17,18 @@ class ParentPage extends StatefulWidget {
 class _ParentPageState extends State<ParentPage> {
   int _selectedIndex = 0;
 
-  List<Widget> _pages = [
+  final List<Widget> _pages = [
     const WalletPage(),
     const ChartPage(),
     /*SwapPage(),
     HubPage(),*/
-    SettingsPage(),
+    const SettingsPage(),
   ];
 
-  final _pageController = PageController(initialPage: 1);
+  final _pageController = PageController(initialPage: 0);
   int maxCount = 5;
 
-  String _appBarTitle = 'Wallet'; // Título inicial del AppBar
+  String _appBarTitle = 'Wallet';
 
   @override
   void dispose() {
@@ -47,7 +47,7 @@ class _ParentPageState extends State<ParentPage> {
     return Scaffold(
       backgroundColor: themeData.backgroundColor,
       appBar: AppBar(
-        title: Text(_appBarTitle), // Mostrar el título actual del AppBar
+        title: Text(_appBarTitle),
         backgroundColor: themeData.backgroundColor,
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -61,31 +61,28 @@ class _ParentPageState extends State<ParentPage> {
       bottomNavigationBar: (_pages.length <= maxCount)
           ? AnimatedNotchBottomBar(
               pageController: _pageController,
-              color: Colors.white,
+              color: themeData.cardColor,
               showLabel: false,
-              notchColor: Colors.black87,
+              notchColor: themeData.cardColor,
               bottomBarItems: items,
               onTap: (index) {
                 setState(() {
                   _selectedIndex = index;
                   switch (_selectedIndex) {
                     case 0:
-                      _appBarTitle =
-                          'Wallet'; // Actualizar el título del AppBar para la pantalla Wallet
+                      _appBarTitle = 'Wallet';
                       break;
                     case 1:
-                      _appBarTitle =
-                          'Chart'; // Actualizar el título del AppBar para la pantalla Chart
+                      _appBarTitle = 'Chart';
                       break;
                     case 2:
-                      _appBarTitle =
-                          'Settings'; // Actualizar el título del AppBar para la pantalla Settings
+                      _appBarTitle = 'Settings';
                       break;
                   }
                 });
                 _pageController.animateToPage(
                   index,
-                  duration: const Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 100),
                   curve: Curves.easeIn,
                 );
               },

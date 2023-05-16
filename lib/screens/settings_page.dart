@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
                   icons: CupertinoIcons.pencil_outline,
                   iconStyle: IconStyle(),
                   title: 'Appearance',
-                  subtitle: "Make Ziar'App yours",
+                  subtitle: "Make Bolo Wallet yours",
                 ),
                 SettingsItem(
                   onTap: () {},
@@ -33,7 +33,7 @@ class SettingsPage extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                   title: 'Privacy',
-                  subtitle: "Lock Ziar'App to improve your privacy",
+                  subtitle: "Lock Bolo Wallet to improve your privacy",
                 ),
                 SettingsItem(
                   onTap: () {},
@@ -54,6 +54,15 @@ class SettingsPage extends StatelessWidget {
                     },
                   ),
                 ),
+                SettingsItem(
+                  onTap: () {},
+                  icons: CupertinoIcons.delete_solid,
+                  title: "Delete account",
+                  titleStyle: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
             SettingsGroup(
@@ -65,32 +74,7 @@ class SettingsPage extends StatelessWidget {
                     backgroundColor: Colors.purple,
                   ),
                   title: 'About',
-                  subtitle: "Learn more about Ziar'App",
-                ),
-              ],
-            ),
-            // You can add a settings title
-            SettingsGroup(
-              settingsGroupTitle: "Account",
-              items: [
-                SettingsItem(
-                  onTap: () {},
-                  icons: Icons.exit_to_app_rounded,
-                  title: "Sign Out",
-                ),
-                SettingsItem(
-                  onTap: () {},
-                  icons: CupertinoIcons.repeat,
-                  title: "Change email",
-                ),
-                SettingsItem(
-                  onTap: () {},
-                  icons: CupertinoIcons.delete_solid,
-                  title: "Delete account",
-                  titleStyle: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  subtitle: "Learn more about Bolo Wallet",
                 ),
               ],
             ),

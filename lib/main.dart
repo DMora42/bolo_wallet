@@ -1,10 +1,10 @@
+import 'dart:async';
 import 'package:bolo_wallet/data/theme_data.dart';
 import 'package:bolo_wallet/provider/theme/theme_provider.dart';
 import 'package:bolo_wallet/routes/routes.dart';
 import 'package:bolo_wallet/secure/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:async';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
@@ -31,30 +31,31 @@ class _MyAppState extends State<MyApp> {
   bool _isMnemonicStored = false;
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top]);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Theme.of(context).backgroundColor,
-      statusBarIconBrightness: Theme.of(context).brightness,
-    ));
-    _checkMnemonic();
+    //  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //      overlays: [SystemUiOverlay.top]);
+    await _isMnemonic();
   }
 
-  Future<void> _checkMnemonic() async {
+  Future<void> _isMnemonic() async {
     final mnemonic = await SecureStorage().read('mnemonic');
-    setState(() {
-      _isMnemonicStored = mnemonic != null;
-    });
+    if (mnemonic!.isNotEmpty) {
+      _isMnemonicStored = true;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return ChangeNotifierProvider(
         create: (_) => ModelTheme(),
         child: Consumer<ModelTheme>(
             builder: (context, ModelTheme themeNotifier, child) {
+          SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarColor: themeData.backgroundColor,
+            statusBarIconBrightness: themeData.brightness,
+          ));
           return Sizer(builder: (context, orientation, deviceType) {
             return GetMaterialApp(
               defaultTransition: Transition.rightToLeft,
