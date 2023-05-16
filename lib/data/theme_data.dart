@@ -18,6 +18,7 @@ class Constants {
       ),
     ),
     brightness: Brightness.light,
+    // ignore: deprecated_member_use
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
     secondaryHeaderColor: const Color(0xff3b22a1),
@@ -29,11 +30,14 @@ class Constants {
 
   static ThemeData darkModeTheme = ThemeData(
     appBarTheme: const AppBarTheme(
+      elevation: 0.0,
       titleTextStyle: TextStyle(
         color: Colors.white,
+        fontSize: 20,
       ),
     ),
     brightness: Brightness.dark,
+    // ignore: deprecated_member_use
     backgroundColor: darkBG,
     primaryColor: darkPrimary,
     secondaryHeaderColor: const Color(0xff3b22a1),

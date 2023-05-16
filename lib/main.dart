@@ -33,9 +33,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() async {
     super.initState();
+    await _isMnemonic();
     //  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
     //      overlays: [SystemUiOverlay.top]);
-    await _isMnemonic();
   }
 
   Future<void> _isMnemonic() async {
@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
         child: Consumer<ModelTheme>(
             builder: (context, ModelTheme themeNotifier, child) {
           SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            // ignore: deprecated_member_use
             statusBarColor: themeData.backgroundColor,
             statusBarIconBrightness: themeData.brightness,
           ));
