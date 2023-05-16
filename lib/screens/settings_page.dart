@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
                   icons: CupertinoIcons.pencil_outline,
                   iconStyle: IconStyle(),
                   title: 'Appearance',
-                  subtitle: "Make Bolo Wallet yours",
+                  subtitle: "Feel comfortable here",
                 ),
                 SettingsItem(
                   onTap: () {},
