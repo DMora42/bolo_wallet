@@ -6,6 +6,7 @@ Padding cryptoIcon(IconData icon, ThemeData themeData) {
     padding: EdgeInsets.symmetric(horizontal: 0.5.w),
     child: Container(
       decoration: BoxDecoration(
+        // ignore: deprecated_member_use
         color: themeData.backgroundColor,
         borderRadius: BorderRadius.circular(20),
       ),

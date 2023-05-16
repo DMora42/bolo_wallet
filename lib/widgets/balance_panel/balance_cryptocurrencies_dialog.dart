@@ -12,6 +12,7 @@ Future<void> displayBalanceDialog(
 
   return Get.defaultDialog(
     title: 'Your Cryptocurrencies\n(24h change)',
+    // ignore: deprecated_member_use
     backgroundColor: themeData.backgroundColor,
     titlePadding: EdgeInsets.only(top: 2.h),
     radius: 20.0,

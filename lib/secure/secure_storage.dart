@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorage {
-  final storage = new FlutterSecureStorage();
+  // ignore: prefer_const_constructors
+  final storage = FlutterSecureStorage();
 
   Future<void> write(String key, String value) async {
     await storage.write(key: key, value: value);

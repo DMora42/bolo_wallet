@@ -7,6 +7,7 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
     return Scaffold(
+      // ignore: deprecated_member_use
       backgroundColor: themeData.backgroundColor,
       body: Center(
         child: Column(

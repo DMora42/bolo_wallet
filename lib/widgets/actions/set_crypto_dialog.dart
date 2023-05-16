@@ -22,6 +22,7 @@ Future<void> displaySetCryptoDialog(
   TextEditingController ammountController = TextEditingController();
   return Get.defaultDialog(
     title: 'Set Portfolio Ammount',
+    // ignore: deprecated_member_use
     backgroundColor: themeData.backgroundColor,
     titlePadding: const EdgeInsets.only(top: 8.0),
     radius: 20.0,
@@ -35,6 +36,7 @@ Future<void> displaySetCryptoDialog(
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
+                // ignore: deprecated_member_use
                 color: themeData.backgroundColor,
                 border: Border.all(
                   color: themeData.primaryColor,
@@ -48,6 +50,7 @@ Future<void> displaySetCryptoDialog(
                       'No Cryptocurrency',
                     ),
                     menuMaxHeight: 40.h,
+                    // ignore: deprecated_member_use
                     dropdownColor: themeData.backgroundColor,
                     borderRadius: BorderRadius.circular(20),
                     style: GoogleFonts.poppins(color: themeData.primaryColor),
@@ -131,13 +134,15 @@ Future<void> displaySetCryptoDialog(
                       ? Text(
                           'Close',
                           style: TextStyle(
+                            // ignore: deprecated_member_use
                             color: themeData.backgroundColor,
                             fontWeight: FontWeight.bold,
                           ),
                         )
                       : Text(
-                          'Set ammount',
+                          'Set amount',
                           style: TextStyle(
+                            // ignore: deprecated_member_use
                             color: themeData.backgroundColor,
                             fontWeight: FontWeight.bold,
                           ),
