@@ -32,8 +32,19 @@ class SettingsPage extends StatelessWidget {
                     withBackground: true,
                     backgroundColor: Colors.red,
                   ),
-                  title: 'Privacy',
-                  subtitle: "Lock Bolo Wallet to improve your privacy",
+                  title: 'Security',
+                  subtitle: "Protect your assets",
+                ),
+                SettingsItem(
+                  onTap: () {},
+                  icons: Icons.bolt,
+                  iconStyle: IconStyle(
+                    iconsColor: Colors.white,
+                    withBackground: true,
+                    backgroundColor: Colors.yellow,
+                  ),
+                  title: 'Provider',
+                  subtitle: "Add another RPC URL",
                 ),
                 SettingsItem(
                   onTap: () {},
@@ -52,15 +63,6 @@ class SettingsPage extends StatelessWidget {
                     onChanged: (value) {
                       themeNotifier.isDark = value;
                     },
-                  ),
-                ),
-                SettingsItem(
-                  onTap: () {},
-                  icons: CupertinoIcons.delete_solid,
-                  title: "Delete account",
-                  titleStyle: const TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
