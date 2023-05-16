@@ -33,7 +33,7 @@ class IntroPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text("Let's Get Started"),
+                  child: const Text("Let's get started"),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/create');
                   },
@@ -44,9 +44,11 @@ class IntroPage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: TextButton(
                 style: TextButton.styleFrom(
-                  foregroundColor: Colors.black,
+                  foregroundColor: themeData.brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                 ),
-                child: const Text('Got A Wallet'),
+                child: const Text('Import wallet'),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/import');
                 },

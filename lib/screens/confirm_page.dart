@@ -21,10 +21,6 @@ class _ConfirmMnemonicPageState extends State<ConfirmMnemonicPage> {
     return true;
   }
 
-  Future<void> navigateTo(context) async {
-    Navigator.pushNamedAndRemoveUntil(context, '/parent', (route) => false);
-  }
-
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -92,7 +88,8 @@ class _ConfirmMnemonicPageState extends State<ConfirmMnemonicPage> {
                   ? () async {
                       final mnemonic = widget.words.join(' ');
                       await SecureStorage().write('mnemonic', mnemonic);
-                      await navigateTo(context);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/parent', (route) => false);
                     }
                   : null,
               child: const Text('Confirm'),
