@@ -34,6 +34,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _isMnemonic();
+    //  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //      overlays: [SystemUiOverlay.top]);
   }
 
   Future<void> _isMnemonic() async {
