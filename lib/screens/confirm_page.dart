@@ -21,24 +21,23 @@ class _ConfirmMnemonicPageState extends State<ConfirmMnemonicPage> {
     return true;
   }
 
-  Future<void> navigateTo(context) async {
-    Navigator.pushNamedAndRemoveUntil(context, '/parent', (route) => false);
-  }
-
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Scaffold(
+      // ignore: deprecated_member_use
+      backgroundColor: themeData.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Please confirm your 12-word mnemonic phrase:',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -83,16 +82,17 @@ class _ConfirmMnemonicPageState extends State<ConfirmMnemonicPage> {
                 ),
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: isConfirmed
                   ? () async {
                       final mnemonic = widget.words.join(' ');
                       await SecureStorage().write('mnemonic', mnemonic);
-                      await navigateTo(context);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/parent', (route) => false);
                     }
                   : null,
-              child: Text('Confirm'),
+              child: const Text('Confirm'),
             ),
           ],
         ),

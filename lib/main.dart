@@ -31,31 +31,24 @@ class _MyAppState extends State<MyApp> {
   bool _isMnemonicStored = false;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    //  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-    //      overlays: [SystemUiOverlay.top]);
-    await _isMnemonic();
+    _isMnemonic();
   }
 
   Future<void> _isMnemonic() async {
     final mnemonic = await SecureStorage().read('mnemonic');
-    if (mnemonic!.isNotEmpty) {
-      _isMnemonicStored = true;
-    }
+    setState(() {
+      _isMnemonicStored = mnemonic!.isNotEmpty;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
     return ChangeNotifierProvider(
         create: (_) => ModelTheme(),
         child: Consumer<ModelTheme>(
             builder: (context, ModelTheme themeNotifier, child) {
-          SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-            statusBarColor: themeData.backgroundColor,
-            statusBarIconBrightness: themeData.brightness,
-          ));
           return Sizer(builder: (context, orientation, deviceType) {
             return GetMaterialApp(
               defaultTransition: Transition.rightToLeft,

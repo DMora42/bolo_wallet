@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'wallet_page.dart';
@@ -20,8 +22,8 @@ class _ParentPageState extends State<ParentPage> {
   final List<Widget> _pages = [
     const WalletPage(),
     const ChartPage(),
-    /*SwapPage(),
-    HubPage(),*/
+    const SwapPage(),
+    const HubPage(),
     const SettingsPage(),
   ];
 
@@ -76,6 +78,12 @@ class _ParentPageState extends State<ParentPage> {
                       _appBarTitle = 'Chart';
                       break;
                     case 2:
+                      _appBarTitle = 'Swap';
+                      break;
+                    case 3:
+                      _appBarTitle = 'P2P';
+                      break;
+                    case 4:
                       _appBarTitle = 'Settings';
                       break;
                   }

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../secure/secure_storage.dart';
@@ -12,7 +14,7 @@ class ImportMnemonicPage extends StatefulWidget {
 class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   bool _isTextVisible = true;
   bool _isMnemonicValid = false;
-  TextEditingController _mnemonicController = TextEditingController();
+  final TextEditingController _mnemonicController = TextEditingController();
 
   void _saveMnemonic() async {
     await SecureStorage().write('mnemonic', _mnemonicController.text);
@@ -36,12 +38,12 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Invalid Mnemonic'),
-          content: Text(
+          title: const Text('Invalid Mnemonic'),
+          content: const Text(
               'The content of the clipboard is not a valid 12-word mnemonic.'),
           actions: [
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -73,9 +75,11 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
     return Scaffold(
+      // ignore: deprecated_member_use
       backgroundColor: themeData.backgroundColor,
       appBar: AppBar(
-        title: Text('Import Mnemonic'),
+        title: const Text('Import Mnemonic'),
+        // ignore: deprecated_member_use
         backgroundColor: themeData.backgroundColor,
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -85,8 +89,8 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 32.0),
-              padding: EdgeInsets.all(16.0),
+              margin: const EdgeInsets.symmetric(horizontal: 32.0),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 border: Border.all(
@@ -99,33 +103,33 @@ class _ImportMnemonicPageState extends State<ImportMnemonicPage> {
                 children: _buildMnemonicRows(_mnemonicController.text),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             GestureDetector(
               onTap: () {
                 setState(() {
                   _isTextVisible = false;
                 });
                 _pasteFromClipboard();
-                Future.delayed(Duration(milliseconds: 500), () {
+                Future.delayed(const Duration(milliseconds: 500), () {
                   _saveMnemonic();
                 });
               },
               child: Container(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Colors.blue,
                 ),
-                child: Text(
+                child: const Text(
                   'Paste your mnemonic here',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _isMnemonicValid ? _saveMnemonic : null,
-              child: Text('Continue'),
+              child: const Text('Continue'),
             ),
           ],
         ),

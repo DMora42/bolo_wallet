@@ -6,9 +6,9 @@ import '../screens/import_page.dart';
 
 Map<String, Widget Function(BuildContext)> getRoutes(context) {
   return {
-    '/': (BuildContext context) => IntroPage(),
-    '/create': (BuildContext context) => CreatePage(),
-    '/import': (BuildContext context) => ImportMnemonicPage(),
-    '/parent': (BuildContext context) => ParentPage(),
+    '/': (BuildContext context) => const IntroPage(),
+    '/create': (BuildContext context) => const CreatePage(),
+    '/import': (BuildContext context) => const ImportMnemonicPage(),
+    '/parent': (BuildContext context) => const ParentPage(),
   };
 }

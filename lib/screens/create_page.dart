@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:flutter/material.dart';
 import 'confirm_page.dart';
@@ -39,12 +41,12 @@ class _CreatePageState extends State<CreatePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Your 12-word mnemonic phrase is:',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -56,7 +58,7 @@ class _CreatePageState extends State<CreatePage> {
                 ),
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -73,7 +75,7 @@ class _CreatePageState extends State<CreatePage> {
                       generateMnemonic();
                     });
                   },
-                  child: Text('Generate'),
+                  child: const Text('Generate'),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -90,7 +92,7 @@ class _CreatePageState extends State<CreatePage> {
                       ),
                     );
                   },
-                  child: Text('Confirm'),
+                  child: const Text('Confirm'),
                 ),
               ],
             ),

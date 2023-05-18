@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:bolo_wallet/util/api_calls.dart';
 import 'package:bolo_wallet/widgets/chart/chart.dart';
 import 'package:bolo_wallet/widgets/chart/chart_sort_widget.dart';
@@ -7,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:unicons/unicons.dart';
+// ignore: unused_import
 import 'package:shitcoin_price/shitcoin_price.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -314,7 +317,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap: () {}, //TODO: add sell action
+                    onTap: () {},
                     splashColor:
                         themeData.secondaryHeaderColor.withOpacity(0.5),
                     highlightColor:
@@ -344,7 +347,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {}, //TODO: add buy action
+                    onTap: () {}, 
                     splashColor: themeData.primaryColor,
                     highlightColor: themeData.primaryColor,
                     child: Container(

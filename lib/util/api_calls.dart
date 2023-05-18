@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 Map<String, String> headers = {
   "X-CoinAPI-Key": "F2E60ED3-CA0E-4114-821A-594E7B48A5B7",
-}; //TODO: paste api key from https://www.coinapi.io/pricing?apikey
+}; 
 
 class ApiCalls extends GetConnect {
   Future<List<FlSpot>> getChart(

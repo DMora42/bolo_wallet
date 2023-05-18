@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:bolo_wallet/widgets/actions/text_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
