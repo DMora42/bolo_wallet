@@ -16,9 +16,7 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
   try {
     String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
     String token1 = '0xdac17f958d2ee523a2206206994597c13d831ec7';
-    final client = Web3Client(
-        'https://eth.meowrpc.com/',
-        Client());
+    final client = Web3Client('https://eth.meowrpc.com/', Client());
     final tokens = await getUniswapTokensList();
     final List<Map<String, dynamic>> balances = [];
     for (final token in tokens) {
@@ -30,7 +28,6 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
       final balanceBigInt =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
       if (balanceBigInt > BigInt.zero) {
-
         final balanceValue = BigInt.parse(balanceBigInt.toString());
         final balanceEtherValue =
             EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
@@ -40,10 +37,10 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
             .asBigInt(client, router, token['address'], token1);
         final priceValue = BigInt.parse(priceBigInt.toString());
 
-        final priceEtherValue =
-            EtherAmount.fromBigInt(EtherUnit.wei, priceBigInt.pow(18));
+        final priceEtherValue = EtherAmount.fromBigInt(
+            EtherUnit.wei, priceBigInt * BigInt.from(10).pow(12));
         final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
-        
+
         balances.add({
           'name': token['name'],
           'symbol': token['symbol'],
