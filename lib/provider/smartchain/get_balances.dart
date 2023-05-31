@@ -4,19 +4,18 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:io';
 
-Future<List<dynamic>> getUniswapTokensList() async {
-  final jsonString = await File('../../abis/uniswapTokens.json').readAsString();
+Future<List<dynamic>> getPancakeswapTokensList() async {
+  final jsonString =
+      await File('../../abis/pancakeswapTokens.json').readAsString();
   final jsonData = jsonDecode(jsonString);
   return jsonData['tokens'];
 }
 
-Future<Map<String, EtherAmount>> getBalancesForAddressAtEthereum(
+Future<Map<String, EtherAmount>> getBalancesForAddressAtBSC(
     String address) async {
   try {
-    final client = Web3Client(
-        'https://api.bitstack.com/v1/wNFxbiJyQsSeLrX8RRCHi7NpRxrlErZk/DjShIqLishPCTB9HiMkPHXjUM9CNM9Na/ETH/mainnet',
-        Client());
-    final tokens = await getUniswapTokensList();
+    final client = Web3Client('https://bsc-dataseed.binance.org/', Client());
+    final tokens = await getPancakeswapTokensList();
     final Map<String, EtherAmount> balances = {};
 
     for (final token in tokens) {
@@ -39,7 +38,6 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtEthereum(
 }
 
 void main() async {
-  final lt = await getBalancesForAddressAtEthereum(
+  await getBalancesForAddressAtBSC(
       '0x5a8216a9c47ee2e8df1c874252fdee467215c25b');
-  print(lt);
 }
