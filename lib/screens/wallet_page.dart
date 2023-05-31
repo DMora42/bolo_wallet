@@ -1,7 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:bolo_wallet/provider/ethereum/get_balances.dart';
-import 'package:bolo_wallet/widgets/avatar/avatar_image.dart';
 import 'package:bolo_wallet/widgets/balance/balance_card.dart';
 import 'package:bolo_wallet/widgets/coins/coin_card.dart';
 import 'package:bolo_wallet/widgets/coins/coin_item.dart';
@@ -25,7 +24,7 @@ class _WalletPageState extends State<WalletPage> {
   }
 
   Future<void> _fetchData() async {
-    final address = '0x123456789...'; // dirección de Ethereum para obtener los saldos
+    const address = '0x123456789...'; // dirección de Ethereum para obtener los saldos
     final newBalances = await getBalancesForAddressAtEthereum(address);
     setState(() {
       balances = newBalances;
