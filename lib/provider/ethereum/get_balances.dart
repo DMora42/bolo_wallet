@@ -27,8 +27,10 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtEthereum(
       );
       final balance =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
-      balances[token['symbol']] =
-          EtherAmount.fromBigInt(EtherUnit.wei, balance);
+      if (balance > BigInt.zero) {
+        balances[token['symbol']] =
+            EtherAmount.fromBigInt(EtherUnit.wei, balance);
+      }
     }
 
     await client.dispose();
@@ -40,6 +42,6 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtEthereum(
 
 void main() async {
   final lt = await getBalancesForAddressAtEthereum(
-      '0x5a8216a9c47ee2e8df1c874252fdee467215c25b');
+      '0xE16924e9935B999F70aeffa07d8d3F9DFd1741F5');
   print(lt);
 }

@@ -26,8 +26,10 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtPolygon(
       );
       final balance =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
-      balances[token['symbol']] =
-          EtherAmount.fromBigInt(EtherUnit.wei, balance);
+      if (balance > BigInt.zero) {
+        balances[token['symbol']] =
+            EtherAmount.fromBigInt(EtherUnit.wei, balance);
+      }
     }
 
     await client.dispose();
