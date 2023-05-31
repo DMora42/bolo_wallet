@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:web3dart/web3dart.dart';
 import 'package:erc20/erc20.dart';
 import 'package:http/http.dart';

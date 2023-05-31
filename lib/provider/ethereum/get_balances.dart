@@ -6,20 +6,20 @@ import 'dart:convert';
 import 'dart:io';
 
 Future<List<dynamic>> getUniswapTokensList() async {
-  final jsonString = await File('../../abis/uniswapTokens.json').readAsString();
+  final jsonString = await File('../abis/uniswapTokens.json').readAsString();
   final jsonData = jsonDecode(jsonString);
   return jsonData['tokens'];
 }
 
-Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
+Future<String> getBalancesForAddressAtEthereum(
     String address) async {
-  try {
-    String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
-    String token1 = '0xdac17f958d2ee523a2206206994597c13d831ec7';
-    final client = Web3Client('https://api.securerpc.com/v1', Client());
-    final tokens = await getUniswapTokensList();
-    final List<Map<String, dynamic>> balances = [];
-    for (final token in tokens) {
+  String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
+  String token1 = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+  final client = Web3Client('https://eth.meowrpc.com/', Client());
+  final tokens = await getUniswapTokensList();
+  final List<Map<String, dynamic>> balances = [];
+  for (final token in tokens) {
+    try {
       final contractAddress = EthereumAddress.fromHex(token['address']);
       final tokenQuery = ERC20(
         address: contractAddress,
@@ -27,31 +27,33 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
       );
       final balanceBigInt =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
+
       if (balanceBigInt > BigInt.zero) {
-        final balanceValue = BigInt.parse(balanceBigInt.toString());
-        final balanceEtherValue =
-            EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
-        final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
+        final priceDouble = await ShitCoinPrice()
+            .asDouble(client, router, token['address'], token1);
+        if (priceDouble > 0) {
+          final balanceValue = BigInt.parse(balanceBigInt.toString());
+          final balanceEtherValue =
+              EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
+          final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
 
-        final priceBigInt = await ShitCoinPrice()
-            .asBigInt(client, router, token['address'], token1);
-        final priceEtherValue = EtherAmount.fromBigInt(
-            EtherUnit.wei, priceBigInt * BigInt.from(10).pow(12));
-        final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
+          final inBUSD = priceDouble;
 
-        balances.add({
-          'name': token['name'],
-          'symbol': token['symbol'],
-          'tokenUri': token['logoURI'],
-          'balance': balance.toString(),
-          'inBUSD': inBUSD.toString(),
-        });
+          balances.add({
+            'name': token['name'],
+            'symbol': token['symbol'],
+            'tokenUri': token['logoURI'],
+            'balance': balance.toString(),
+            'inBUSD': inBUSD.toString(),
+          });
+        }
       }
+    } catch (err) {
+      continue;
     }
-
-    await client.dispose();
-    return {'tokens': balances};
-  } catch (err) {
-    throw Exception(err);
   }
+
+  await client.dispose();
+  final Map<String, dynamic> result = {'tokens': balances};
+  return jsonEncode(result);
 }

@@ -14,8 +14,7 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
-
-   Map<String, EtherAmount>? balances;
+  dynamic balances;
 
   @override
   void initState() {
@@ -24,7 +23,8 @@ class _WalletPageState extends State<WalletPage> {
   }
 
   Future<void> _fetchData() async {
-    const address = '0x123456789...'; // dirección de Ethereum para obtener los saldos
+    const address =
+        '0x123456789...'; // dirección de Ethereum para obtener los saldos
     final newBalances = await getBalancesForAddressAtEthereum(address);
     setState(() {
       balances = newBalances;
@@ -89,7 +89,7 @@ class _WalletPageState extends State<WalletPage> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(
-            coins.length, (index) => CoinCard(cardData: coins[index])),
+            balances.length, (index) => CoinCard(cardData: balances[index])),
       ),
     );
   }
@@ -98,8 +98,8 @@ class _WalletPageState extends State<WalletPage> {
     return Container(
       padding: EdgeInsets.only(left: 15, right: 15),
       child: Column(
-          children:
-              List.generate(coins.length, (index) => CoinItem(coins[index]))),
+          children: List.generate(
+              balances.length, (index) => CoinItem(balances[index]))),
     );
   }
 }
