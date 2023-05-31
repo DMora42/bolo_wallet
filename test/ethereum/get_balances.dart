@@ -31,17 +31,15 @@ Future<String> getBalancesForAddressAtEthereum(
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
 
       if (balanceBigInt > BigInt.zero) {
-        final priceBigInt = await ShitCoinPrice()
-            .asBigInt(client, router, token['address'], token1);
-        if (priceBigInt > BigInt.zero) {
+        final priceDouble = await ShitCoinPrice()
+            .asDouble(client, router, token['address'], token1);
+        if (priceDouble > 0) {
           final balanceValue = BigInt.parse(balanceBigInt.toString());
           final balanceEtherValue =
               EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
           final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
 
-          final priceEtherValue =
-              EtherAmount.fromBigInt(EtherUnit.wei, priceBigInt);
-          final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
+          final inBUSD = priceDouble;
 
           balances.add({
             'name': token['name'],
