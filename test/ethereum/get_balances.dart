@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:shitcoin_price/shitcoin_price.dart';
+import 'package:bolo_wallet/provider/helpers/coin_price.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:erc20/erc20.dart';
 import 'package:http/http.dart';
@@ -30,8 +30,8 @@ Future<String> getBalancesForAddressAtEthereum(String address) async {
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
 
       if (balanceBigInt > BigInt.zero) {
-        final priceDouble = await ShitCoinPrice()
-            .asDouble(client, router, token['address'], token1);
+        final priceDouble = await CoinPrice().asDouble(
+            client, router, token['address'], token1, token['decimals'], 6);
         if (priceDouble > 0) {
           final balanceValue = BigInt.parse(balanceBigInt.toString());
           final balanceEtherValue =
