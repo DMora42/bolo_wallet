@@ -14,8 +14,8 @@ Future<List<dynamic>> getUniswapTokensList() async {
 Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
     String address) async {
   try {
-    String router = '0x10ed43c718714eb63d5aa57b78b54704e256024e';
-    String token1 = '0xe9e7cea3dedca5984780bafc599bd69add087d56';
+    String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
+    String token1 = '0xdac17f958d2ee523a2206206994597c13d831ec7';
     final client = Web3Client(
         'https://api.bitstack.com/v1/wNFxbiJyQsSeLrX8RRCHi7NpRxrlErZk/DjShIqLishPCTB9HiMkPHXjUM9CNM9Na/ETH/mainnet',
         Client());
@@ -30,14 +30,19 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
       final balanceBigInt =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
       if (balanceBigInt > BigInt.zero) {
+
+        final balanceValue = BigInt.parse(balanceBigInt.toString());
+        final balanceEtherValue =
+            EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
+        final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
+
         final priceBigInt = await ShitCoinPrice()
             .asBigInt(client, router, token['address'], token1);
-        final balanceEtherValue =
-            EtherAmount.fromBigInt(EtherUnit.wei, balanceBigInt);
-        final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
+        final priceValue = BigInt.parse(priceBigInt.toString());
         final priceEtherValue =
-            EtherAmount.fromBigInt(EtherUnit.wei, priceBigInt);
+            EtherAmount.fromBigInt(EtherUnit.wei, priceValue);
         final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
+        
         balances.add({
           'name': token['name'],
           'symbol': token['symbol'],
