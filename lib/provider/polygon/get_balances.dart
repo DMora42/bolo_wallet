@@ -38,6 +38,7 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtPolygon(
 }
 
 void main() async {
-  await getBalancesForAddressAtPolygon(
+  final lt = await getBalancesForAddressAtPolygon(
       '0x5a8216a9c47ee2e8df1c874252fdee467215c25b');
+  print(lt);
 }

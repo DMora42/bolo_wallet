@@ -38,6 +38,7 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtBSC(
 }
 
 void main() async {
-  await getBalancesForAddressAtBSC(
+  final lt = await getBalancesForAddressAtBSC(
       '0x5a8216a9c47ee2e8df1c874252fdee467215c25b');
+  print(lt);
 }
