@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class SwapPage extends StatefulWidget {
@@ -62,8 +64,8 @@ class _SwapPageState extends State<SwapPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Select a token'),
-                const Icon(Icons.keyboard_arrow_down),
+                Text('Select a token'),
+                Icon(Icons.keyboard_arrow_down),
               ],
             ),
           ),
@@ -79,8 +81,8 @@ class _SwapPageState extends State<SwapPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Select a token'),
-                const Icon(Icons.keyboard_arrow_down),
+                Text('Select a token'),
+                Icon(Icons.keyboard_arrow_down),
               ],
             ),
           ),

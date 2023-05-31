@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, library_private_types_in_public_api
 
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:flutter/material.dart';
