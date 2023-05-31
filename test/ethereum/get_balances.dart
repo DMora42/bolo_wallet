@@ -13,7 +13,7 @@ Future<List<dynamic>> getUniswapTokensList() async {
   return jsonData['tokens'];
 }
 
-Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
+Future<String> getBalancesForAddressAtEthereum(
     String address) async {
   String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
   String token1 = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
@@ -58,7 +58,8 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
   }
 
   await client.dispose();
-  return {'tokens': balances};
+  final Map<String, dynamic> result = {'tokens': balances};
+  return jsonEncode(result);
 }
 
 void main() async {
