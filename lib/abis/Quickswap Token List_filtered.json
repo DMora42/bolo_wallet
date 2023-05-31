@@ -6,7 +6,7 @@
             "chainId": 137,
             "address": "0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4",
             "name": "decentral.games",
-            "symbol": "$DG",
+            "symbol": "DG",
             "decimals": 18,
             "logoURI": "https://raw.githubusercontent.com/sameepsi/quickswap-default-token-list/master/assets/dg.jpg"
         },

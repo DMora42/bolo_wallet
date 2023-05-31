@@ -1808,7 +1808,7 @@
             "name": "Uniswap",
             "symbol": "UNI",
             "decimals": 18,
-            "logoURI": "ipfs://QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg"
+            "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbf5140a22578168fd562dccf235e5d43a02ce9b1.png"
         },
         {
             "chainId": 1,

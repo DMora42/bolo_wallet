@@ -51,6 +51,14 @@
             "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xad6caeb32cd2c308980a548bd0bc5aa4306c6c18.png"
         },
         {
+            "name": "Bolo Token",
+            "symbol": "BOLO",
+            "address": "0xC1DA031D459c574163e69E4370B465FaF3F5a7CF",
+            "chainId": 56,
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/SantiiRepair/assets/master/pancakeswap/0xC1DA031D459c574163e69E4370B465FaF3F5a7CF.png"
+        },
+        {
             "chainId": 56,
             "address": "0x56b6fb708fc5732dec1afc8d8556423a2edccbd6",
             "name": "EOS Token",

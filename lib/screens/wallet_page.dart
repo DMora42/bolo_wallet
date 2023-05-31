@@ -14,6 +14,8 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
+
+ void initState()async
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,43 +28,6 @@ class _WalletPageState extends State<WalletPage> {
       child: Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
-            height: 50,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Welcome",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text("Sangvaleap V",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        )),
-                  ],
-                )),
-                AvatarImage(
-                  "https://avatars.githubusercontent.com/u/86506519?v=4",
-                  isSVG: false,
-                  width: 35,
-                  height: 35,
-                  radius: 10,
-                )
-              ],
-            ),
-          ),
           SizedBox(
             height: 25,
           ),
@@ -87,7 +52,7 @@ class _WalletPageState extends State<WalletPage> {
           Container(
               padding: EdgeInsets.only(left: 15, right: 15),
               child: Text(
-                "Newly Launched",
+                "Wallet Balance",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               )),
           SizedBox(
