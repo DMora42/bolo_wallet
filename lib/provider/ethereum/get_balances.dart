@@ -28,8 +28,7 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtEthereum(
       final balance =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
       if (balance > BigInt.zero) {
-        balances[token['symbol']] =
-            EtherAmount.fromBigInt(EtherUnit.wei, balance);
+        balances[token['symbol']] = EtherAmount.fromBigInt(EtherUnit.wei, balance);
       }
     }
 
