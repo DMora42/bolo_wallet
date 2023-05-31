@@ -41,3 +41,9 @@ Future<Map<String, dynamic>> getBalancesForAddressAtBSC(String address) async {
     throw Exception(err);
   }
 }
+
+void main() async {
+  final lt = await getBalancesForAddressAtBSC(
+      '0x742d35Cc6634C0532925a3b844Bc454e4438f44e');
+  print(lt);
+}

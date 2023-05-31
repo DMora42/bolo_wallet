@@ -35,6 +35,8 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
 
         final priceBigInt = await ShitCoinPrice()
             .asBigInt(client, router, token['address'], token1);
+        final priceValue = BigInt.parse(priceBigInt.toString());
+
         final priceEtherValue = EtherAmount.fromBigInt(
             EtherUnit.wei, priceBigInt * BigInt.from(10).pow(12));
         final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
@@ -54,4 +56,10 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
   } catch (err) {
     throw Exception(err);
   }
+}
+
+void main() async {
+  final lt = await getBalancesForAddressAtEthereum(
+      '0x49bDCd1CE46253C497C03BD8fAAC986eA63E11Fc');
+  print(lt);
 }
