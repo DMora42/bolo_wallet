@@ -29,26 +29,28 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
       );
       final balanceBigInt =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
-      final priceBigInt = await ShitCoinPrice()
-          .asBigInt(client, router, token['address'], token1);
 
-      if (balanceBigInt > BigInt.zero && priceBigInt > BigInt.zero) {
-        final balanceValue = BigInt.parse(balanceBigInt.toString());
-        final balanceEtherValue =
-            EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
-        final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
+      if (balanceBigInt > BigInt.zero) {
+        final priceBigInt = await ShitCoinPrice()
+            .asBigInt(client, router, token['address'], token1);
+        if (priceBigInt > BigInt.zero) {
+          final balanceValue = BigInt.parse(balanceBigInt.toString());
+          final balanceEtherValue =
+              EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
+          final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
 
-        final priceEtherValue = EtherAmount.fromBigInt(
-            EtherUnit.wei, priceBigInt * BigInt.from(10).pow(12));
-        final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
+          final priceEtherValue =
+              EtherAmount.fromBigInt(EtherUnit.wei, priceBigInt);
+          final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
 
-        balances.add({
-          'name': token['name'],
-          'symbol': token['symbol'],
-          'tokenUri': token['logoURI'],
-          'balance': balance.toString(),
-          'inBUSD': inBUSD.toString(),
-        });
+          balances.add({
+            'name': token['name'],
+            'symbol': token['symbol'],
+            'tokenUri': token['logoURI'],
+            'balance': balance.toString(),
+            'inBUSD': inBUSD.toString(),
+          });
+        }
       }
     } catch (err) {
       continue;
