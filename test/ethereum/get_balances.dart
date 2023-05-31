@@ -15,13 +15,13 @@ Future<List<dynamic>> getUniswapTokensList() async {
 
 Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
     String address) async {
-  try {
-    String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
-    String token1 = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
-    final client = Web3Client('https://eth.meowrpc.com/', Client());
-    final tokens = await getUniswapTokensList();
-    final List<Map<String, dynamic>> balances = [];
-    for (final token in tokens) {
+  String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
+  String token1 = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+  final client = Web3Client('https://eth.meowrpc.com/', Client());
+  final tokens = await getUniswapTokensList();
+  final List<Map<String, dynamic>> balances = [];
+  for (final token in tokens) {
+    try {
       final contractAddress = EthereumAddress.fromHex(token['address']);
       final tokenQuery = ERC20(
         address: contractAddress,
@@ -29,14 +29,15 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
       );
       final balanceBigInt =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
-      if (balanceBigInt > BigInt.zero) {
+      final priceBigInt = await ShitCoinPrice()
+          .asBigInt(client, router, token['address'], token1);
+      ;
+      if (balanceBigInt > BigInt.zero && priceBigInt > BigInt.zero) {
         final balanceValue = BigInt.parse(balanceBigInt.toString());
         final balanceEtherValue =
             EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);
         final balance = balanceEtherValue.getValueInUnit(EtherUnit.ether);
 
-        final priceBigInt = await ShitCoinPrice()
-            .asBigInt(client, router, token['address'], token1);
         final priceEtherValue = EtherAmount.fromBigInt(
             EtherUnit.wei, priceBigInt * BigInt.from(10).pow(12));
         final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
@@ -49,13 +50,13 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
           'inBUSD': inBUSD.toString(),
         });
       }
+    } catch (err) {
+      continue;
     }
-
-    await client.dispose();
-    return {'tokens': balances};
-  } catch (err) {
-    throw Exception(err);
   }
+
+  await client.dispose();
+  return {'tokens': balances};
 }
 
 void main() async {
