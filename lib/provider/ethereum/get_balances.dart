@@ -17,7 +17,7 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
     String router = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D';
     String token1 = '0xdac17f958d2ee523a2206206994597c13d831ec7';
     final client = Web3Client(
-        'https://api.bitstack.com/v1/wNFxbiJyQsSeLrX8RRCHi7NpRxrlErZk/DjShIqLishPCTB9HiMkPHXjUM9CNM9Na/ETH/mainnet',
+        'https://eth.meowrpc.com/',
         Client());
     final tokens = await getUniswapTokensList();
     final List<Map<String, dynamic>> balances = [];
@@ -39,8 +39,9 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
         final priceBigInt = await ShitCoinPrice()
             .asBigInt(client, router, token['address'], token1);
         final priceValue = BigInt.parse(priceBigInt.toString());
+
         final priceEtherValue =
-            EtherAmount.fromBigInt(EtherUnit.wei, priceValue);
+            EtherAmount.fromBigInt(EtherUnit.wei, priceBigInt.pow(18));
         final inBUSD = priceEtherValue.getValueInUnit(EtherUnit.ether);
         
         balances.add({
@@ -48,7 +49,7 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
           'symbol': token['symbol'],
           'tokenUri': token['logoURI'],
           'balance': balance.toString(),
-          'inBUSD': inBUSD.,
+          'inBUSD': inBUSD.toString(),
         });
       }
     }
