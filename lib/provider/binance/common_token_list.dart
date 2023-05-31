@@ -1,4 +1,4 @@
-List binance_tokens = [
+List binanceTokens = [
   {
     "name": "Binance Coin",
     "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"

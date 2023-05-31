@@ -1,9 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:bolo_wallet/data/json.dart';
 import 'package:bolo_wallet/widgets/avatar/avatar_image.dart';
 import 'package:bolo_wallet/widgets/balance/balance_card.dart';
-import 'package:bolo_wallet/widgets/coins/card_slider.dart';
 import 'package:bolo_wallet/widgets/coins/coin_card.dart';
 import 'package:bolo_wallet/widgets/coins/coin_item.dart';
 import 'package:flutter/material.dart';
@@ -102,8 +100,7 @@ class _WalletPageState extends State<WalletPage> {
   }
 
   getBalanceCards() {
-    return CardSlider(balanceCards: balanceCards);
-    Center(child: BalanceCard(cardData: balanceCards[0]));
+    return BalanceCard(cardData: balanceCards[0]);
   }
 
   getCoinCards() {

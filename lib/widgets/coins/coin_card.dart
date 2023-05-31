@@ -1,8 +1,10 @@
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import '../avatar/avatar_image.dart';
 
 class CoinCard extends StatelessWidget {
-  CoinCard({Key? key, required this.cardData}) : super(key: key);
+  const CoinCard({Key? key, required this.cardData}) : super(key: key);
   final cardData;
 
   @override

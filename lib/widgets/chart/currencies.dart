@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:bolo_wallet/widgets/chart/currency_item.dart';
 import 'package:flutter/material.dart';
 

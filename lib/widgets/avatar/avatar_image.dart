@@ -1,17 +1,19 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:multiavatar/multiavatar.dart';
 
 class AvatarImage extends StatelessWidget {
   const AvatarImage(this.name,
-      {this.width = 100,
+      {Key? key, this.width = 100,
       this.height = 100,
       this.bgColor,
       this.borderWidth = 0,
       this.borderColor,
       this.trBackground = false,
       this.isSVG = true,
-      this.radius = 50});
+      this.radius = 50}) : super(key: key);
   final String name;
   final double width;
   final double height;
@@ -24,13 +26,12 @@ class AvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  multiavatar
+    ThemeData themeData = Theme.of(context);
     return isSVG
         ? Container(
             width: width,
             height: height,
             decoration: BoxDecoration(
-
               border: Border.all(
                   color: borderColor ?? Theme.of(context).cardColor,
                   width: borderWidth),
@@ -51,7 +52,7 @@ class AvatarImage extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
               boxShadow: [
                 BoxShadow(
-                  color: shadowColor.withOpacity(0.1),
+                  color: themeData.cardColor.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
                   offset: Offset(1, 1), // changes position of shadow

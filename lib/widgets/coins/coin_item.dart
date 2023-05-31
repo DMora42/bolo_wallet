@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import '../avatar/avatar_image.dart';
 
@@ -47,40 +49,36 @@ class CoinItem extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Expanded(
-                            child: Container(
-                                child: Text(coinData['name'],
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700)))),
-                        const SizedBox(width: 5),
-                        Container(
-                            child: Text(coinData['price'],
+                            child: Text(coinData['name'],
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w600)))
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700))),
+                        const SizedBox(width: 5),
+                        Text(coinData['price'],
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600))
                       ],
                     ),
                     const SizedBox(height: 5),
                     Row(
                       children: <Widget>[
                         Expanded(
-                          child: Container(
-                              child: Text(coinData['name_abb'],
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                  ))),
+                          child: Text(coinData['name_abb'],
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 13,
+                              )),
                         ),
-                        Container(
-                            child: Text(
+                        Text(
                           coinData['change'],
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                        ))
+                        )
                       ],
                     ),
                   ],
