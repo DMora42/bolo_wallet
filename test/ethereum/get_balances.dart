@@ -31,7 +31,7 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
       final priceBigInt = await ShitCoinPrice()
           .asBigInt(client, router, token['address'], token1);
-      ;
+
       if (balanceBigInt > BigInt.zero && priceBigInt > BigInt.zero) {
         final balanceValue = BigInt.parse(balanceBigInt.toString());
         final balanceEtherValue =
