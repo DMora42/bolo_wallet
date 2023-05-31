@@ -48,7 +48,7 @@ Future<Map<String, dynamic>> getBalancesForAddressAtEthereum(
           'symbol': token['symbol'],
           'tokenUri': token['logoURI'],
           'balance': balance.toString(),
-          'inBUSD': inBUSD.toString(),
+          'inBUSD': inBUSD.,
         });
       }
     }
