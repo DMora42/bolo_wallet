@@ -11,12 +11,11 @@ Future<List<dynamic>> getPancakeswapTokensList() async {
   return jsonData['tokens'];
 }
 
-Future<Map<String, EtherAmount>> getBalancesForAddressAtBSC(
-    String address) async {
+Future<Map<String, dynamic>> getBalancesForAddressAtBSC(String address) async {
   try {
     final client = Web3Client('https://bsc-dataseed.binance.org/', Client());
     final tokens = await getPancakeswapTokensList();
-    final Map<String, EtherAmount> balances = {};
+    final List<Map<String, dynamic>> balances = [];
 
     for (final token in tokens) {
       final contractAddress = EthereumAddress.fromHex(token['address']);
@@ -27,13 +26,17 @@ Future<Map<String, EtherAmount>> getBalancesForAddressAtBSC(
       final balance =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
       if (balance > BigInt.zero) {
-        balances[token['symbol']] =
-            EtherAmount.fromBigInt(EtherUnit.wei, balance);
+        balances.add({
+          'name': token['name'],
+          'symbol': token['symbol'],
+          'tokenUri': token['logoURI'],
+          'balance': balance.toString(),
+        });
       }
     }
 
     await client.dispose();
-    return balances;
+    return {'tokens': balances};
   } catch (err) {
     throw Exception(err);
   }
