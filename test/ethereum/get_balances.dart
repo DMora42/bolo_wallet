@@ -28,11 +28,10 @@ Future<String> getBalancesForAddressAtEthereum(String address) async {
       );
       final balanceBigInt =
           await tokenQuery.balanceOf(EthereumAddress.fromHex(address));
-
+      final priceDouble = await CoinPrice().asDouble(
+          client, router, token['address'], token1, token['decimals'], 6);
       if (balanceBigInt > BigInt.zero) {
-        final priceDouble = await CoinPrice().asDouble(
-            client, router, token['address'], token1, token['decimals'], 6);
-        if (priceDouble > 0) {
+        if (priceDouble > 0.0) {
           final balanceValue = BigInt.parse(balanceBigInt.toString());
           final balanceEtherValue =
               EtherAmount.fromBigInt(EtherUnit.wei, balanceValue);

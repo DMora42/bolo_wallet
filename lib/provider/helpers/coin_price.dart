@@ -22,10 +22,10 @@ class CoinPrice {
           ]);
       if (result.isNotEmpty && result[0].length > 1) {
         final value = (result[0][1] as BigInt);
-        final powed = value * BigInt.from(10).gcd(6 as BigInt);
+        final powed = value / BigInt.from(1000000);
         print(powed);
         final etherValueDouble =
-            EtherAmount.inWei(powed).getValueInUnit(EtherUnit.wei);
+            EtherAmount.inWei(BigInt.from(powed)).getValueInUnit(EtherUnit.wei);
         return etherValueDouble;
       } else {
         return 0.0;
